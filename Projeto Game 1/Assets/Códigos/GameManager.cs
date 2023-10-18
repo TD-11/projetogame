@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
         if (restantes <= 0)
         {
             MsgVitoria.text = "!Parabéns!";
+            source.Stop();
             source.PlayOneShot(clipVitoria);
         }
     }

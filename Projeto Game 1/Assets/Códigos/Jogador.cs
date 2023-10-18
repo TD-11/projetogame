@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class Jogador : MonoBehaviour
 {
     public int velocidade = 10;
@@ -25,7 +26,7 @@ public class Jogador : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         Vector3 direcao = new Vector3(h,0,v);
-        rb.AddForce(direcao * velocidade);
+        rb.AddForce(direcao * velocidade * Time.deltaTime, ForceMode.Impulse);
 
         if( Input.GetKeyDown(KeyCode.Space) && noChao)
         {
