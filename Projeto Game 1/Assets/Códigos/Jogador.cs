@@ -8,16 +8,17 @@ public class Jogador : MonoBehaviour
     public int velocidade = 10;
     public int forcaPulo = 7;
     private Rigidbody rb;
-    bool noChao;
+    private AudioSource source;
+    bool noChao; 
 
-    // Start is called before the first frame update
     void Start()
     {
-      TryGetComponent(out rb);
+        TryGetComponent(out rb);
+        TryGetComponent(out source);
 
     }
+    
 
-    // Update is called once per frame
     void Update()
     {
         float h = Input.GetAxis("Horizontal");
@@ -26,8 +27,10 @@ public class Jogador : MonoBehaviour
         Vector3 direcao = new Vector3(h,0,v);
         rb.AddForce(direcao * velocidade);
 
-        if( Input.GetKeyDown(KeyCode.Space) && noChao){
+        if( Input.GetKeyDown(KeyCode.Space) && noChao)
+        {
             rb. AddForce(Vector3.up * forcaPulo, ForceMode.Impulse);
+            source.Play();
             noChao = false;
         }
 
